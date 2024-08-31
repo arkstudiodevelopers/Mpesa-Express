@@ -25,7 +25,7 @@ const createToken = async(req, res, next) => {
 
 const stkPush= async(req, res)=>{
     const shortCode= "174379";
-    const phone= req.body.phone.substring(1);
+    const phone= `254${req.body.phone.substring(1)}`;
     const amount= req.body.amount;
     const passkey="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     const url= "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
@@ -48,9 +48,9 @@ const stkPush= async(req, res)=>{
                 Timestamp: timestamp,    
                 TransactionType: "CustomerPayBillOnline",
                 Amount: amount,   
-                PartyA:`254+${phone}`,
+                PartyA:phone,
                 PartyB:174379,
-                PhoneNumber:`254+${phone}`,
+                PhoneNumber:phone,
                 CallBackURL: "https://mydomain.com/path",
                 AccountReference:"For MpesaTest",
                 TransactionDesc:"For Mpesa Test",
